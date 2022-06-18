@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Likes = ({ upvotes, downvotes }) => {
+const Likes = ({ upvotes, downvotes, handleUpVotes, handleDownVotes }) => {
   console.log(downvotes)
   const styleBtn = {
     fontSize: 14,
@@ -14,8 +14,12 @@ const Likes = ({ upvotes, downvotes }) => {
 
   return (
     <div>
-      <button style={styleBtn}>{upvotes} </button>
-      <button style={styleBtn}>{downvotes} </button>
+      <button onClick={() => handleUpVotes()} style={styleBtn}>
+        {upvotes}{' '}
+      </button>
+      <button onClick={() => handleDownVotes()} style={styleBtn}>
+        {downvotes}{' '}
+      </button>
     </div>
   )
 }
