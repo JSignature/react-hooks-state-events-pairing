@@ -5,13 +5,16 @@ import Likes from './Likes'
 import Views from './Views'
 function App() {
   const [youTubeVid, setYouTubeVid] = useState(video)
-  // youTubeVid = [youTubeVid, setYouTubeVid] = useState(video.embedUrl)
+
   console.log("Here's your data:", video.embedUrl)
-  // console.log(video.comments)
+
   let [vidLikes, setVidLikes] = useState(video.upvotes)
   let [vidDownLikes, setVidDownLikes] = useState(video.downvotes)
-  console.log(vidLikes)
-  console.log(vidDownLikes)
+  const [toggleState, setToggleState] = useState(false)
+
+  function handleToggle() {
+    setToggleState(!toggleState)
+  }
 
   function handleUpVotes() {
     setVidLikes((vidLikes += 1))
@@ -22,7 +25,7 @@ function App() {
   }
   return (
     <>
-      <div className="App">
+      <div className="App" style={{ marginTop: 30 }}>
         <iframe
           width="919"
           height="525"
@@ -40,8 +43,10 @@ function App() {
         downvotes={vidDownLikes}
         handleUpVotes={handleUpVotes}
         handleDownVotes={handleDownVotes}
+        handleToggle={handleToggle}
+        toggleState={toggleState}
       />
-      <Comments comments={youTubeVid.comments} />
+      <Comments comments={youTubeVid.comments} toggleState={toggleState} />
     </>
   )
 }
